@@ -1,0 +1,39 @@
+pragma solidity ^0.4.18;
+
+contract ReviewSystem {
+    
+    struct Review{
+        
+    string ProductName;
+    string  ReviewerName;
+    string ReviewMessage;  
+    uint   ReviewRating;
+    }
+   
+    mapping(address =>Review) reviewers;
+    address[] public reviewAccts;
+    
+    function writeReview(address _address, string  _ProductName, string _ReviewerName, string  _ReviewMessage, uint _ReviewRating) public {
+    var reviewer = reviewers[_address];
+    
+    reviewer.ProductName = _ProductName;
+    reviewer.ReviewerName = _ReviewerName;
+    reviewer.ReviewMessage = _ReviewMessage;
+    reviewer.ReviewRating = _ReviewRating;
+    
+    reviewAccts.push(_address) -1;
+    }
+    function getReviews() view public returns (address[] ) {
+        return reviewAccts;
+    }
+    
+    function getReview(address _address) view public returns(string, string, string, uint){
+       
+       return(reviewers[_address].ProductName, reviewers[_address].ReviewerName, reviewers[_address].ReviewMessage,reviewers[_address].ReviewRating);
+       
+    }
+    
+     function countReviewers() view public returns (uint) {
+        return reviewAccts.length;
+    }
+    
