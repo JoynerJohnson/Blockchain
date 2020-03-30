@@ -33,7 +33,15 @@ contract ReviewSystem {
        
     }
     
+    function getProductReview(address _address,string _ProductName) view public returns ( string, string, uint){
+        return(reviewers[_address].ReviewerName, reviewers[_address].ReviewMessage,reviewers[_address].ReviewRating);
+        
+    }
+    
      function countReviewers() view public returns (uint) {
         return reviewAccts.length;
     }
     
+   
+    
+}
